@@ -58,7 +58,7 @@ Sound.prototype = {
     load: function (id) {
         if(!this.soundFile[id]){
             this.soundFile[id] = new Audio('sound/' + id + '.mp3');
-        }else return this.soundFile[id];
+        };
     },
     pause: function (status) {
         var sound = this.soundFile[status];
@@ -165,8 +165,6 @@ Plane.prototype.setImg = function () {
         img.onload = function () {
             Plane.img = img;
     }
-   else return this.img;
-    }
 }
 //子弹相关属性
 Plane.prototype.shoot = function () {
@@ -264,7 +262,7 @@ Monster.prototype.setImg = function () {
         img1.onload = function () {
             Monster.img = img1;
         };
-    }else return this.img;
+    };
 
     var img = new Image();
     img.src = CONFIG.enemyBoomIcon;
