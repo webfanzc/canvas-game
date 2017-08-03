@@ -157,10 +157,13 @@ Plane.prototype.draw = function () {
 };
 // 读取图片
 Plane.prototype.setImg = function () {
-    var img = new Image();
-    img.src = CONFIG.planeIcon;
-    img.onload = function () {
-        Plane.img = img;
+    if (!this.img){
+        var img = new Image();
+        img.src = CONFIG.planeIcon;
+        img.onload = function () {
+            Plane.img = img;
+    }
+   else return this.img;
     }
 }
 //子弹相关属性
@@ -253,12 +256,14 @@ function Monster(opts) {
 inheritPrototype(Monster, Elements);
 
 Monster.prototype.setImg = function () {
-    var img1 = new Image();
-    img1.src = CONFIG.enemyIcon;
-    img1.onload = function () {
-        Monster.img = img1;
-    }
-    ;
+    if (!this.img){
+        var img1 = new Image();
+        img1.src = CONFIG.enemyIcon;
+        img1.onload = function () {
+            Monster.img = img1;
+        };
+    }else return this.img;
+
     var img = new Image();
     img.src = CONFIG.enemyBoomIcon;
     img.onload = function () {
