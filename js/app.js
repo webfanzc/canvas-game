@@ -58,6 +58,7 @@ Sound.prototype = {
     load: function (id) {
         if(!this.soundFile[id]){
             this.soundFile[id] = new Audio('sound/' + id + '.mp3');
+            this.soundOnload = true;
         };
     },
     pause: function (status) {
@@ -262,6 +263,7 @@ Plane.prototype.setImg = function () {
             img1.src = CONFIG.enemyIcon;
             img1.onload = function () {
                 Monster.img = img1;
+                this.imgLoad = true;
             };
         }
         ;
@@ -353,7 +355,11 @@ Plane.prototype.setImg = function () {
             var stopBtn = document.querySelector('.js-stop');
             var returnBtn = document.querySelector(".js-return");
             playBtn.onclick = function () {
-                self.play();
+                if (self.sound.soundOnload && self.monsters[0].imgLoad){
+                    self.play();
+                }else {
+                    alert('请等待资源加载完毕');
+                }
             };
 
             //重新开始
