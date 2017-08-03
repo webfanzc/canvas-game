@@ -56,7 +56,9 @@ Sound.prototype = {
     },
     //读取音频
     load: function (id) {
-        this.soundFile[id] = new Audio('sound/' + id + '.mp3');
+        if(!this.soundFile[id]){
+            this.soundFile[id] = new Audio('sound/' + id + '.mp3');
+        }else return this.soundFile[id];
     },
     pause: function (status) {
         var sound = this.soundFile[status];
